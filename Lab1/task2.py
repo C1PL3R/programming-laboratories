@@ -31,21 +31,19 @@ def time_operations(seconds: int) -> str:
     is_negative = 1 - is_valid
 
     count_of_days = seconds // 86400
-    count_of_hours = (seconds - (count_of_days * 86400)) // 3600
-    count_of_minutes = (
-        seconds - (count_of_days * 86400) - (count_of_hours * 3600)
-    ) // 60
-    count_of_seconds = (
-        seconds
-        - (count_of_days * 86400)
-        - (count_of_hours * 3600)
-        - (count_of_minutes * 60)
-    )
+    seconds = seconds % 86400
+
+    count_of_hours = seconds // 3600
+    seconds = seconds % 3600
+
+    count_of_minutes = seconds // 60
+    count_of_seconds = seconds % 60
 
     result = (
         f"The duration of the mission is {count_of_days} days, {count_of_hours} hours, {count_of_minutes} minutes and {count_of_seconds} seconds;\n"
         f"the formatted duration is {count_of_days} days, {count_of_hours:02d}:{count_of_minutes:02d}:{count_of_seconds:02d}."
     )
+
     error = "Number of seconds must be non-negative"
 
     return (error * is_negative) + (result * is_valid)

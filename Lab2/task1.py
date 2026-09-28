@@ -57,18 +57,19 @@ def check_point_belonging(x: float, y: float) -> bool:
     >>> check_point_belonging(6.5, 4.5)
     True
     """
-    y_line_bottom = y >= 0.7 * x - 1.4
-    y_parallel_x = y <= 5
-    y_ellipse = (x**2) / 64 + (y**2) / 25 <= 1
-    y_line_top = y >= (7 / 3) * x + (35 / 3)
 
-    return (
-        ((y <= 0) and y_line_bottom and y_line_top)  # on picture - color red
-        or (
-            (x < 0) and (y > 0) and y_line_bottom and y_ellipse
-        )  # on picture - color greed
-        or ((x >= 0) and y_line_bottom and y_parallel_x)  # on picture - color blue
+    cond_1st = (x >= 0) and (y >= 0) and (y <= 5) and (y >= 0.7 * x - 1.4)
+    cond_2nd = (x < 0) and (y > 0) and ((x**2) + (y**2) <= 25)
+    cond_3rd = (
+        (x <= 0)
+        and (y <= 0)
+        and ((x**2) + (y**2) <= 25)
+        and (y >= (7 / 3) * x + (35 / 3))
+        and (y >= 0.7 * x - 1.4)
     )
+    cond_4th = (x > 0) and (y < 0) and (y >= 0.7 * x - 1.4)
+
+    return cond_1st or cond_2nd or cond_3rd or cond_4th
 
 
 doctest.testmod()
