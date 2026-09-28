@@ -76,10 +76,20 @@ def plot_double_primes(numbers: list[int], digit_sums: list[int]) -> None:
     """
     Будує гістограму сум цифр.
     """
-    plt.bar(numbers, digit_sums)
-    plt.title("Порівняння категорій")
-    plt.xlabel("Категорії")
-    plt.ylabel("Значення")
+    if not numbers:
+        return
+
+    plt.figure(figsize=(8, 5))
+    plt.bar(
+        [str(n) for n in numbers],
+        digit_sums,
+        color="mediumseagreen",
+        edgecolor="black",
+    )
+    plt.title("Сума цифр простих чисел (сума цифр яких також є простою)")
+    plt.xlabel("Прості числа")
+    plt.ylabel("Сума цифр")
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
     plt.show()
 
 

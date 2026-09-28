@@ -180,3 +180,5 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 /.idea
+Lab3/black
+Lab3/ruff

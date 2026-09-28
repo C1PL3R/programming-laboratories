@@ -89,19 +89,28 @@ def plot_armstrong_analysis(
     Будує графіки залежностей НСД, НСК та кількості
     спільних дільників від номера пари сусідніх чисел Армстронга.
     """
-    ax1, ax2, ax3 = plt.subplots(3, 1, figsize=(8, 6))
+    if not pair_indices:
+        return
 
-    ax1.plot(gcd_values, pair_indices, color="red")
-    ax1.set_title("Залежність НСД від номера пари сусідніх чисел Армстронга")
+    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(8, 10))
 
-    ax2.plot(lcm_values, pair_indices, color="blue")
-    ax2.set_title("Залежність НСК від номера пари сусідніх чисел Армстронга ")
+    ax1.plot(pair_indices, gcd_values, marker="o", color="red")
+    ax1.set_title("Залежність НСД від номера пари")
+    ax1.set_xlabel("Номер пари")
+    ax1.set_ylabel("НСД")
+    ax1.grid(True)
 
-    ax3.plot(divisors_counts, pair_indices, color="green")
-    ax3.set_title(
-        "Залежність кількості спільних дільників"
-        + "від номера пари сусідніх чисел Армстронга"
-    )
+    ax2.plot(pair_indices, lcm_values, marker="o", color="blue")
+    ax2.set_title("Залежність НСК від номера пари")
+    ax2.set_xlabel("Номер пари")
+    ax2.set_ylabel("НСК")
+    ax2.grid(True)
+
+    ax3.plot(pair_indices, divisors_counts, marker="o", color="green")
+    ax3.set_title("Залежність кількості спільних дільників від номера пари")
+    ax3.set_xlabel("Номер пари")
+    ax3.set_ylabel("Кількість дільників")
+    ax3.grid(True)
 
     plt.tight_layout()
     plt.show()

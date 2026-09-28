@@ -76,17 +76,17 @@ def plot_palindrom_squares(numbers: list[int], squares: list[int]) -> None:
     Будує графік та гістограму квадратів чисел.
     Функція нічого не повертає.
     """
-    plt.plot(numbers, squares, marker="o", linestyle="-")
-    plt.title("Динаміка показника")
-    plt.xlabel("X")
-    plt.ylabel("Y")
-    plt.grid(True)
-    plt.show()
+    if not numbers:
+        return
 
-    plt.bar(numbers, squares)
-    plt.title("Порівняння категорій")
-    plt.xlabel("Категорії")
-    plt.ylabel("Значення")
+    counts = list(range(1, len(numbers) + 1))
+
+    plt.figure(figsize=(8, 5))
+    plt.plot(numbers, counts, marker="o", linestyle="-", color="purple")
+    plt.title("Залежність кількості чисел з квадратами-паліндромами від N")
+    plt.xlabel("Число N")
+    plt.ylabel("Кількість знайдених чисел")
+    plt.grid(True)
     plt.show()
 
 
