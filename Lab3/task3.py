@@ -100,13 +100,13 @@ def plot_armstrong_analysis(
     ax1.set_ylabel("НСД")
     ax1.grid(True)
 
-    ax2.plot(pair_indices, lcm_values, marker="o", color="blue")
+    ax2.plot(pair_indices, lcm_values, marker="o", color="green")
     ax2.set_title("Залежність НСК від номера пари")
     ax2.set_xlabel("Номер пари")
     ax2.set_ylabel("НСК")
     ax2.grid(True)
 
-    ax3.plot(pair_indices, divisors_counts, marker="o", color="green")
+    ax3.plot(pair_indices, divisors_counts, marker="o", color="blue")
     ax3.set_title("Залежність кількості спільних дільників від номера пари")
     ax3.set_xlabel("Номер пари")
     ax3.set_ylabel("Кількість дільників")

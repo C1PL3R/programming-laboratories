@@ -82,7 +82,7 @@ def plot_palindrom_squares(numbers: list[int], squares: list[int]) -> None:
     counts = list(range(1, len(numbers) + 1))
 
     plt.figure(figsize=(8, 5))
-    plt.plot(numbers, counts, marker="o", linestyle="-", color="purple")
+    plt.plot(numbers, counts, marker="o", linestyle="-", color="red")
     plt.title("Залежність кількості чисел з квадратами-паліндромами від N")
     plt.xlabel("Число N")
     plt.ylabel("Кількість знайдених чисел")

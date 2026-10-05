@@ -83,7 +83,7 @@ def plot_double_primes(numbers: list[int], digit_sums: list[int]) -> None:
     plt.bar(
         [str(n) for n in numbers],
         digit_sums,
-        color="mediumseagreen",
+        color="green",
         edgecolor="black",
     )
     plt.title("Сума цифр простих чисел (сума цифр яких також є простою)")

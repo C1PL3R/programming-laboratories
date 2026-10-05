@@ -122,7 +122,6 @@ def get_digits_statistics(k: int) -> list[int]:
     digits_list = []
 
     blocks_of_squares = get_sequence_count_block_of_squares(k)
-    hidden_number = blocks_of_squares - k
 
     for num in range(1, blocks_of_squares + 1):
         squares_list.append(num**2)
@@ -191,7 +190,7 @@ def plot_digits_statistics(k: int) -> None:
     digits = list(range(10))
 
     plt.figure(figsize=(8, 5))
-    plt.bar(digits, statistics, color="skyblue", edgecolor="black")
+    plt.bar(digits, statistics, color="red", edgecolor="black")
     plt.title(
         f"Частота появи цифр (0–9) у послідовності до {k}-ї цифри включно"
     )
