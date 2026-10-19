@@ -1,11 +1,13 @@
 import turtle
-import random
-import math
-import time
 
-def new_screen(title="Turtle", width=700, height=600, bg="white"):
+
+def new_screen(title="Turtle",
+               width=700,
+               height=600,
+               bg="white") -> turtle._Screen:
     """Готує чисте вікно для малювання. Можна викликати скільки завгодно раз"""
-    turtle.TurtleScreen._RUNNING = True
+    
+    turtle.TurtleScreen._RUNNING = True # type: ignore[attr-defined]
     screen = turtle.Screen()
     screen.clear()
     screen.setup(width, height)
@@ -14,7 +16,10 @@ def new_screen(title="Turtle", width=700, height=600, bg="white"):
     screen.tracer(1)
     return screen
 
-def new_turtle(color="black", size=2, speed=6, shape="turtle"):
+def new_turtle(color="black",
+               size=2,
+               speed=6,
+               shape="turtle") -> turtle.Turtle:
     """Створює черепашку із заданими налаштуваннями."""
     t = turtle.Turtle(shape=shape)
     t.color(color)
@@ -22,7 +27,10 @@ def new_turtle(color="black", size=2, speed=6, shape="turtle"):
     t.speed(speed)
     return t
 
-def jump(t: object, x: object, y: object, heading: object = 0) -> None:
+def jump(t: turtle.Turtle,
+    x: float,
+    y: float,
+    heading: float = 0) -> None:
     """Переносить черепашку в точку (x, y) без малювання і задає напрямок."""
     t.penup()
     t.goto(x, y)
