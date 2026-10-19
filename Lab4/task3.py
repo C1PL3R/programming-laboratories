@@ -4,10 +4,10 @@ import useful_functions as uf
 
 m1, m2 = 5, 50
 
-dt = 0.1  # Крок часу для фізичного розрахунку
+dt = 0.1
 
-v1 = 100   # Початкова швидкість легшої кульки (рухається вправо)
-v2 = -100  # Початкова швидкість важчої кульки (рухається вліво)
+v1 = 100
+v2 = -100
 
 screen = uf.new_screen(title="Зіткнення кульок", width=600, height=600)
 screen.bgcolor("black")
@@ -21,8 +21,8 @@ heavier_ball = uf.new_turtle(speed=0, color="green", shape="circle")
 lighter_ball.penup()
 heavier_ball.penup()
 
-lighter_ball.goto(-150, -290 + r_lighter)
-heavier_ball.goto(150, -290 + r_heavier)
+lighter_ball.goto(-randint(50, 150), -290 + r_lighter)
+heavier_ball.goto(randint(50, 150), -290 + r_heavier)
 
 lighter_ball.shapesize(stretch_wid=r_lighter / 10, stretch_len=r_lighter / 10)
 heavier_ball.shapesize(stretch_wid=r_heavier / 10, stretch_len=r_heavier / 10)

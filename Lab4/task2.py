@@ -25,9 +25,9 @@ analog_theme: list[tuple[str, str, str, str, str, str]] = [
 
 # (bgcolor, text_color, zero_sec_color)
 digital_theme: list[tuple[str, str, str]] = [
-    ("black", "lime", "yellow"),       # Темна
-    ("white", "lime", "darkblue"),    # Світла
-    ("#1A1A2E", "#E94560", "darkred"),   # Neon Red
+    ("black", "lime", "yellow"), # Темна
+    ("white", "lime", "darkblue"), # Світла
+    ("#1A1A2E", "#E94560", "darkred"), # Neon Red
 ]
 
 count_analog_theme: int = 0
