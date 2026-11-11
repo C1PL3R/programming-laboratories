@@ -15,20 +15,16 @@ def calculate_s(m1, m2, L, v):
 
     for _ in range(max_collisions):
         events = []
-
         if v1 < 0:
             t_wall = -x1 / v1
             events.append((t_wall, "wall"))
-
         if v1 > v2:
             t_ball = (x2 - x1) / (v1 - v2)
             events.append((t_ball, "ball"))
-
         if not events:
             break
 
         t, event = min(events, key=lambda item: item[0])
-
         s1 += abs(v1) * t
 
         x1 += v1 * t
@@ -38,28 +34,18 @@ def calculate_s(m1, m2, L, v):
 
         if event == "wall":
             v1 = -v1
-
         elif event == "ball":
-            u1 = (
-                (m1 - m2) / (m1 + m2) * v1
-                + (2 * m2) / (m1 + m2) * v2
-            )
-
-            u2 = (
-                (2 * m1) / (m1 + m2) * v1
-                + (m2 - m1) / (m1 + m2) * v2
-            )
-
+            u1 = ((m1 - m2) / (m1 + m2) * v1 + (2 * m2) / (m1 + m2) * v2)
+            u2 = ((2 * m1) / (m1 + m2) * v1 + (m2 - m1) / (m1 + m2) * v2)
             v1, v2 = u1, u2
 
     return s1, count_of_collisions
 
 
 m1 = 5
-m2 = 500
+m2 = 10
 L = 300
 v = 120
-
 
 m1_list = list(range(2, 102, 5))
 s1_list = []
@@ -112,7 +98,7 @@ plt.legend()
 plt.tight_layout()
 
 
-v_list = list(range(100, 1100, 50))
+v_list = list(range(0, 10, 1))
 s_v_list = []
 
 for speed in v_list:
@@ -120,13 +106,14 @@ for speed in v_list:
     s_v_list.append(s)
 
 plt.figure(figsize=(8, 5))
+print(v_list, s_v_list)
 plt.plot(v_list, s_v_list, marker="d", label="S(v)")
 plt.title("Залежність шляху від початкової швидкості")
 plt.xlabel("Початкова швидкість v")
 plt.ylabel("Повний шлях S")
 plt.grid(True)
 plt.legend()
-plt.tight_layout()
+
 
 
 ratio_list = [

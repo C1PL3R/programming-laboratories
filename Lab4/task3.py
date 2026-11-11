@@ -64,7 +64,6 @@ def animate_move(dt: float) -> None:
 
 while True:
     events = []
-
     wall_x = left_wall + r_lighter
 
     if v1 < 0:
@@ -86,20 +85,16 @@ while True:
         dt_exit = (exit_x - x2) / v2
         if dt_exit >= 0:
             events.append((dt_exit, "exit"))
-
     if not events:
         break
 
     dt, event = min(events, key=lambda item: item[0])
-
     animate_move(dt)
 
     if event == "wall":
         v1 = -v1
-
     elif event == "ball":
         u1 = (((m1 - m2) / (m1 + m2)) * v1 + ((2 * m2) / (m1 + m2)) * v2)
-
         u2 = (((2 * m1) / (m1 + m2)) * v1 + ((m2 - m1) / (m1 + m2)) * v2)
 
         v1, v2 = u1, u2
@@ -107,5 +102,6 @@ while True:
 
     elif event == "exit":
         break
+
 
 screen.mainloop()
