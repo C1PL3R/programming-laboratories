@@ -1,19 +1,7 @@
 import math
 import matplotlib.pyplot as plt
-from typing import Callable
-import time
+from my_func import measure_average_time
 
-def measure_average_time(func: Callable, n: int, x: float, runs:int = 100) -> float:
-    """Вимірює середній час виконання функції 'func(n, x)' за
-    'runs' запусків.
-    Повертає середній час у секундах.
-    """
-    start_time = time.perf_counter()
-    for _ in range(runs):
-        func(n, x)
-    total_time = time.perf_counter() - start_time
-
-    return total_time / runs
 
 def calculate_a(n: int, x: float) -> str:
     """Обчислює значення виразу:
