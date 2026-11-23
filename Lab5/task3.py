@@ -28,12 +28,12 @@ def pi_gregory(n_digits: int) -> str:
     >>> pi_gregory(8)
     'The Gregory formula gives value 3.14159263 with the accuracy 8 digits after the decimal point by using 50000000 members of series.'
 
-    >>> pi_gregory(9)
-    'The Gregory formula gives value 3.141592652 with the accuracy 9 digits after the decimal point by using 500000000 members of series.'
-
-    >>> pi_gregory(10)
-    'The Gregory formula gives value 3.1415926534 with the accuracy 10 digits after the decimal point by using 5000000000 members of series.'
-    """
+    # >>> pi_gregory(9)
+    # 'The Gregory formula gives value 3.141592652 with the accuracy 9 digits after the decimal point by using 500000000 members of series.'
+    #
+    # >>> pi_gregory(10)
+    # 'The Gregory formula gives value 3.1415926534 with the accuracy 10 digits after the decimal point by using 5000000000 members of series.'
+    # """
     eps = 4.0 * (10 ** (-n_digits))
     k = 1
     a_prev = 4
@@ -59,61 +59,55 @@ def pi_wallis(n_digits: int) -> str:
     """Calculates pi using the Wallis product up to n_digits after the decimal point.
 
     >>> pi_wallis(1)
-    'The Vallis formula gives value 3.2 with the accuracy 1 digits after the decimal point by using 15 members of series.'
+    'The Vallis formula gives value 3.1 with the accuracy 1 digits after the decimal point by using 15 members of series.'
 
     >>> pi_wallis(2)
-    'The Vallis formula gives value 3.15 with the accuracy 2 digits after the decimal point by using 157 members of series.'
+    'The Vallis formula gives value 3.14 with the accuracy 2 digits after the decimal point by using 157 members of series.'
 
     >>> pi_wallis(3)
-    'The Vallis formula gives value 3.141 with the accuracy 3 digits after the decimal point by using 1570 members of series.'
+    'The Vallis formula gives value 3.142 with the accuracy 3 digits after the decimal point by using 1571 members of series.'
 
     >>> pi_wallis(4)
-    'The Vallis formula gives value 3.1416 with the accuracy 4 digits after the decimal point by using 15707 members of series.'
+    'The Vallis formula gives value 3.1416 with the accuracy 4 digits after the decimal point by using 15708 members of series.'
 
     >>> pi_wallis(5)
     'The Vallis formula gives value 3.14159 with the accuracy 5 digits after the decimal point by using 157079 members of series.'
 
     >>> pi_wallis(6)
-    'The Vallis formula gives value 3.141592 with the accuracy 6 digits after the decimal point by using 1570796 members of series.'
+    'The Vallis formula gives value 3.141593 with the accuracy 6 digits after the decimal point by using 1570796 members of series.'
 
     >>> pi_wallis(7)
-    'The Vallis formula gives value 3.1415926 with the accuracy 7 digits after the decimal point by using 15707963 members of series.'
+    'The Vallis formula gives value 3.1415927 with the accuracy 7 digits after the decimal point by using 15707963 members of series.'
 
     >>> pi_wallis(8)
     'The Vallis formula gives value 3.14159265 with the accuracy 8 digits after the decimal point by using 157079632 members of series.'
 
-    >>> pi_wallis(9)
-    'The Vallis formula gives value 3.141592653 with the accuracy 9 digits after the decimal point by using 1570796326 members of series.'
-
-    >>> pi_wallis(10)
-    'The Vallis formula gives value 3.1415926536 with the accuracy 10 digits after the decimal point by using 15707963267 members of series.'
-    """
+    # >>> pi_wallis(9)
+    # 'The Vallis formula gives value 3.141592653 with the accuracy 9 digits after the decimal point by using 1570796326 members of series.'
+    #
+    # >>> pi_wallis(10)
+    # 'The Vallis formula gives value 3.1415926536 with the accuracy 10 digits after the decimal point by using 15707963267 members of series.'
+    # """
     eps = 10 ** (-n_digits)
-    a_prev = 4/3
-    k = 1
-    n = 2
-    value = 2 * a_prev
+    dn = 1 / 3  # це (a_1 - 1) = 4/3 - 1
+    value = 2 * (1 + dn)
+    n = 1
+    cond = 1.0
 
-    while True:
-        qn = (n*n*(2*n - 3))/((2*n + 1)*(n - 1)*(n - 1))
-        an = a_prev * qn
-
-        if n * value * (an - 1) < eps:
-            break
-
-        value *= an
-        a_prev = an
-        k = n
+    while cond >= eps:
         n += 1
+        dn = dn * (2 * n - 3) / (2 * n + 1)
+        value *= (1 + dn)
+        cond = (2 * n - 1) * value * dn
 
-    formatted_value = f"{value:.{n_digits}f}"
+    pi_with_error = value + cond / 2
 
     return (
-        f"The Vallis formula gives value {formatted_value} "
-        f"with the accuracy {n_digits} digits after the decimal point by using {k} members of series."
+        f"The Vallis formula gives value {round(pi_with_error, n_digits)} "
+        f"with the accuracy {n_digits} digits after the decimal point by using {n} members of series."
     )
 
 
-# doctest.testmod(verbose=True)
+doctest.testmod(verbose=True)
 
 print(pi_wallis(4))

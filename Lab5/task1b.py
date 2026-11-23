@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 from my_func import calculate_power, measure_average_time
 
 
-
 def calculate_b(n: int, x: float) -> str:
     """Обчислює суму:
 
@@ -40,12 +39,13 @@ def calculate_b(n: int, x: float) -> str:
 
     total_sum = 0
     a_prev = 1.0
+    power = (-2 * x)
 
     for k in range(1, n + 1):
-        power = calculate_power(k=2 * k - 1, x=-2 * x)
         qk = power / k
         ak = a_prev * qk
 
+        power *= (-2 * x) * (-2 * x)
         total_sum = total_sum + ak
         a_prev = ak
 
