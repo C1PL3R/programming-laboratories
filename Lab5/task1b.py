@@ -143,5 +143,3 @@ for name, n_list, x_list, func_opt, func_naive in tasks:
     plt.show()
 
 doctest.testmod(verbose=True)
-
-
