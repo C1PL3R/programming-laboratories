@@ -1,3 +1,16 @@
+import time
+import math
+
+
+def calculate_sum_of_digit(n):
+    length = int(math.log10(n) + 1)
+    result = 0
+    for i in range(1, length + 1):
+        last_digit = n % 10
+        n = n // 10
+        result += last_digit**2
+    return result
+
 def is_happy(n, k):
     """
     Перевіряє, чи є число n k-щасливим.
@@ -37,9 +50,24 @@ def is_happy(n, k):
     >>> is_happy(1000, 2)
     True
     """
+    bunny = n
+    for _ in range(999):
+        turtle = calculate_sum_of_digit(n)
+        n = turtle
+        bunny = calculate_sum_of_digit(turtle)
+        bunny = n
+        print(turtle, bunny)
+
+        if turtle == bunny:
+            return False
+        elif turtle == bunny == 1:
+            return True
 
 
-is_happy(19, 2)
+
+n = int(input("n = "))
+k = int(input("k = "))
+print(is_happy(n, k))
 
 
 def is_abundant(n, alpha):
